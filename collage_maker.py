@@ -89,7 +89,7 @@ def main():
     parse.add_argument('-w', '--width', dest='width', type=int, help='resulting collage image width')
     parse.add_argument('-i', '--init_height', dest='init_height', type=int, help='initial height for resize the images')
     parse.add_argument('-s', '--shuffle', action='store_true', dest='shuffle', help='enable images shuffle')
-    parse.add_argument('-x', '--num_callages', dest='num_callages', type=int, help='How many calages to make total', default=1)
+    parse.add_argument('-n', '--num_callages', dest='num_callages', type=int, help='How many calages to make total', default=1)
 
     args = parse.parse_args()
     if not args.width or not args.init_height:

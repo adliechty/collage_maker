@@ -9,12 +9,6 @@ Usage:
 ------
 The usage of `collage_maker.py` is very simple:
 ```
-usage: collage_maker.py [-h] [-f FOLDER] [-o OUTPUT] [-w WIDTH]
-                        [-i INIT_HEIGHT] [-s]
-
-Photo collage maker
-
-optional arguments:
   -h, --help            show this help message and exit
   -f FOLDER, --folder FOLDER
                         folder with images (*.jpg, *.jpeg, *.png)
@@ -25,6 +19,8 @@ optional arguments:
   -i INIT_HEIGHT, --init_height INIT_HEIGHT
                         initial height for resize the images
   -s, --shuffle         enable images shuffle
+  -n NUM_CALLAGES, --num_callages NUM_CALLAGES
+                        How many calages to make total
 ```
 
 Example:
