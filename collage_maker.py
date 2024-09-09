@@ -7,6 +7,7 @@ Author: Delimitry
 import argparse
 import os
 import random
+import numpy as np
 from PIL import Image
 
 
@@ -80,7 +81,6 @@ def make_collage(images, filename, width, init_height):
     collage_image.save(filename)
     return True
 
-
 def main():
     # prepare argument parser
     parse = argparse.ArgumentParser(description='Photo collage maker')
@@ -89,6 +89,7 @@ def main():
     parse.add_argument('-w', '--width', dest='width', type=int, help='resulting collage image width')
     parse.add_argument('-i', '--init_height', dest='init_height', type=int, help='initial height for resize the images')
     parse.add_argument('-s', '--shuffle', action='store_true', dest='shuffle', help='enable images shuffle')
+    parse.add_argument('-x', '--split_between_x', dest='split_between_x', type=int, help='How many calages to make total', default=1)
 
     args = parse.parse_args()
     if not args.width or not args.init_height:
@@ -106,8 +107,18 @@ def main():
     if args.shuffle:
         random.shuffle(images)
 
-    print('Making collage...')
-    res = make_collage(images, args.output, args.width, args.init_height)
+    if args.split_between_x == 1:
+        image_lists = [images]
+    else:
+        image_lists = []
+        for l in np.array_split(images, args.split_between_x):
+            image_lists.append(list(l))
+        print(image_lists)
+
+
+    for i in range(len(image_lists)):
+        print(f'Making collage {i + 1} / {len(image_lists)}...')
+        res = make_collage(image_lists[i], str(i + 1) + "_" + args.output, args.width, args.init_height)
     if not res:
         print('Failed to create collage!')
         exit(1)
