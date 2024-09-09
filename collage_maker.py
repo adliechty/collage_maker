@@ -89,7 +89,7 @@ def main():
     parse.add_argument('-w', '--width', dest='width', type=int, help='resulting collage image width')
     parse.add_argument('-i', '--init_height', dest='init_height', type=int, help='initial height for resize the images')
     parse.add_argument('-s', '--shuffle', action='store_true', dest='shuffle', help='enable images shuffle')
-    parse.add_argument('-x', '--split_between_x', dest='split_between_x', type=int, help='How many calages to make total', default=1)
+    parse.add_argument('-x', '--num_callages', dest='num_callages', type=int, help='How many calages to make total', default=1)
 
     args = parse.parse_args()
     if not args.width or not args.init_height:
@@ -107,14 +107,12 @@ def main():
     if args.shuffle:
         random.shuffle(images)
 
-    if args.split_between_x == 1:
+    if args.num_callages == 1:
         image_lists = [images]
     else:
         image_lists = []
-        for l in np.array_split(images, args.split_between_x):
+        for l in np.array_split(images, args.num_callages):
             image_lists.append(list(l))
-        print(image_lists)
-
 
     for i in range(len(image_lists)):
         print(f'Making collage {i + 1} / {len(image_lists)}...')

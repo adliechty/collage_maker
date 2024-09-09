@@ -1,3 +1,5 @@
+This is a clone from: [collage_maker](https://github.com/delimitry/collage_maker)
+
 Collage maker
 =============
 
